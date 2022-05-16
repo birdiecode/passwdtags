@@ -31,6 +31,17 @@
 			border-radius: 30px;
 			padding: 5px;
 		}
+		ul.tags li input {
+			position: absolute;
+			z-index: -1;
+			opacity: 0;
+		}
+
+		ul.tags li.true{
+			background-color: #f8d7da;
+			border-color: #842029;
+		}
+
 		ul.items {
 			padding-top: 60px;
 			padding-bottom: 203px;		
@@ -55,208 +66,13 @@
 <body>
 	<div id="app">
 		<ul class="tags">
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
+			<li v-for="(tag, index) in orderedTags" v-bind:class="''+tag.status"><input type="checkbox" v-bind:id="'tag'+index" v-bind:value="index" v-model="tag.status"><label v-bind:for="'tag'+index">{{ tag.label }}</label></li>
 		</ul>
 		<ul class="items">
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
-			<li>Coffee</li>
-			<li>Tea</li>
-			<li>Milk</li>
+			<li v-for="(tag, index) in tags">{{ tag.label }}</li>
 		</ul>
 		<div class="content">
-			<h3>{{ message }}</h3>
+			<h3>{{ label }}</h3>
 			<ul>
 				<li><b>Coffee:</b> Tea</li>
 				<li><b>Tea:</b> Milk</li>
@@ -265,10 +81,21 @@
 	</div>
 	<script type="text/javascript">
 		var app = new Vue({
-		el: '#app',
-		data: {
-		message: 'Hello Vue!'
-		}
+			el: '#app',
+			data: {
+				checkedNames: [],
+				tags: [
+					{label: "Coffee", status: false},
+					{label: "Tea", status: false},
+					{label: "Milk", status: false}
+				],
+				label: 'Hello Vue!'
+			},
+			computed: {
+				orderedTags: function () {
+					return this.tags;
+				}
+			}
 		})
 	</script>
 </body>
