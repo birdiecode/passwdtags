@@ -31,15 +31,16 @@
 			border-radius: 30px;
 			padding: 5px;
 		}
-		ul.tags li input {
+		ul li input {
 			position: absolute;
 			z-index: -1;
 			opacity: 0;
 		}
 
 		ul.tags li.true{
-			background-color: #f8d7da;
-			border-color: #842029;
+			background-color: #d1e7dd;
+			border-color: #0f5132;
+			color: #0f5132;
 		}
 
 		ul.items {
@@ -50,6 +51,9 @@
 			margin: 3px;
 			padding: 2px;
 			border: solid 1px black;
+		}
+		ul.items li.select {
+			border: solid 2px black;
 		}
 		.content {
 			position: fixed;
@@ -62,20 +66,21 @@
 		}
 	</style>
 	<script src="vue.min.js"></script>
+	<script src="axios.min.js"></script>
 </head>
 <body>
 	<div id="app">
 		<ul class="tags">
-			<li v-for="(tag, index) in orderedTags" v-bind:class="''+tag.status"><input type="checkbox" v-bind:id="'tag'+index" v-bind:value="index" v-model="tag.status"><label v-bind:for="'tag'+index">{{ tag.label }}</label></li>
+			<li v-for="(tag, index) in orderedTags" v-bind:class="'' + (tags_status.indexOf(index) != -1)"><input type="checkbox" v-bind:id="'tag'+index" v-bind:value="index" v-model="tags_status"><label v-bind:for="'tag'+index">{{ tag.label }}</label></li>
 		</ul>
 		<ul class="items">
-			<li v-for="(tag, index) in tags">{{ tag.label }}</li>
+			<li v-for="(tag, index) in items" v-bind:class="index == item_select ? 'select' : ''"><input name="items" type="radio" v-bind:id="'item'+index" v-bind:value="index" v-model="item_select"><label v-bind:for="'item'+index">{{ tag.label }}</label></li>
 		</ul>
 		<div class="content">
-			<h3>{{ label }}</h3>
+			<h3>{{ content.label }}</h3>
 			<ul>
 				<li><b>Coffee:</b> Tea</li>
-				<li><b>Tea:</b> Milk</li>
+				<li v-for="(tag, index) in content.parametrs"><b>{{tag}}</b> {{index}}</li>
 			</ul>
 		</div>
 	</div>
@@ -83,18 +88,38 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
-				checkedNames: [],
+				tags_status: [],
 				tags: [
-					{label: "Coffee", status: false},
-					{label: "Tea", status: false},
-					{label: "Milk", status: false}
+					{label: "Coffee"},
+					{label: "Tea"},
+					{label: "Milk"}
 				],
-				label: 'Hello Vue!'
+				items: [
+					{label: "Coffee Tea Milk", id: 1, status: false},
+					{label: "Tea Milk Coffee", id: 2, status: false},
+					{label: "Milk Coffee Tea", id: 3, status: false},
+					{label: "Coffee Milk Tea", id: 4, status: false},
+					{label: "Milk Tea Coffee", id: 5, status: false},
+				],
+				item_select: 0,
+				content: {label: 'Hello Vue!', passwd: "", parametrs: ["test"]}
+
+
 			},
 			computed: {
 				orderedTags: function () {
 					return this.tags;
 				}
+			},
+			watch: {
+				tags: function() {
+					console.log(this.tags)
+				}
+			},
+			mounted() {
+				axios
+				.get('http://127.0.0.1:5000/v1/tags')
+				.then(response => (this.tags = response.data));
 			}
 		})
 	</script>
